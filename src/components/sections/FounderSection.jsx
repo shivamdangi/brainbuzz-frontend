@@ -4,34 +4,37 @@ function FounderSection() {
   const founders = [
     {
       id: 1,
-      name: "Shivam Kumar",
-      role: "Founder & CEO",
-      bio: "With 15+ years of experience in education, Shivam is passionate about making quality education accessible to all.",
-      image: "/professional-man-teacher.jpg",
-    },
-    {
-      id: 2,
-      name: "Priya Sharma",
-      role: "Co-Founder & Lead Educator",
-      bio: "A renowned educator with expertise in curriculum development and student mentoring across all class levels.",
-      image: "/professional-woman-teacher.jpg",
-    },
+      name: "Ms. Zeba",
+      role: "For Spoken English & Grammar",
+      bio: (
+        <>
+          <span><b>Holds an M.A. in English, B.Ed., and M.Ed., with 15 years of rich teaching experience.</b></span><br />
+          <span><b>Highly skilled in training students in Spoken English and mastering grammar with ease.</b></span><br />
+          <span>Passionate about making language learning interactive, confident, and enjoyable for every student.</span>
+        </>
+      ),
+      image: "/professional-woman-teacher.jpg", // You can later replace with a real image
+    }
   ]
 
   return (
     <section className="section-alt founder-section">
       <div className="container">
         <div className="section-header">
-          <h2>Meet Our Founders</h2>
-          <p>Building the future of education with passion and expertise</p>
+          <h2>Meet Our Founder</h2>
+          <p>Expert in Spoken English, Grammar, and Interactive Teaching</p>
         </div>
-        <div className="grid grid-2">
+        <div className="founder-container">
           {founders.map((founder) => (
             <div key={founder.id} className="founder-card card">
-              <img src={founder.image || "/placeholder.svg"} alt={founder.name} />
-              <h3>{founder.name}</h3>
-              <p className="role">{founder.role}</p>
-              <p className="bio">{founder.bio}</p>
+              <div className="founder-image">
+                <img src={founder.image || "/placeholder.svg"} alt={founder.name} />
+              </div>
+              <div className="founder-content">
+                <h3>{founder.name}</h3>
+                <p className="role">{founder.role}</p>
+                <p className="bio">{founder.bio}</p>
+              </div>
             </div>
           ))}
         </div>
