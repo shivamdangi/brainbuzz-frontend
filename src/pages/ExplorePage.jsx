@@ -2,6 +2,7 @@
 
 import { useState, useMemo } from "react"
 import TeacherModal from "../components/TeacherModal"
+import StyledDropdown from "../components/StyledDropdown"
 import CourseData from "../data/courseData"
 import "./ExplorePage.css"
 
@@ -25,12 +26,24 @@ function ExplorePage() {
     return teachers
   }, [])
 
-  const classes = ["All", ...Object.keys(CourseData)]
-  const courses = useMemo(() => {
+  const classOptions = useMemo(() => {
+    return [
+      { value: "All", label: "All Classes" },
+      ...Object.keys(CourseData).map((cls) => ({ value: cls, label: `Class ${cls}` }))
+    ]
+  }, [])
+
+  const courseOptions = useMemo(() => {
+    let coursesList = []
     if (selectedClass === "All") {
-      return ["All", ...new Set(Object.values(CourseData).flatMap((c) => Object.keys(c)))]
+      coursesList = ["All", ...new Set(Object.values(CourseData).flatMap((c) => Object.keys(c)))]
+    } else {
+      coursesList = ["All", ...Object.keys(CourseData[selectedClass] || {})]
     }
-    return ["All", ...Object.keys(CourseData[selectedClass] || {})]
+    return coursesList.map((course) => ({
+      value: course,
+      label: course === "All" ? "All Courses" : course
+    }))
   }, [selectedClass])
 
   // Filter teachers based on selections
@@ -52,33 +65,24 @@ function ExplorePage() {
 
         {/* Filters */}
         <div className="filters">
-          <div className="filter-group">
-            <label>Select Class</label>
-            <select
-              value={selectedClass}
-              onChange={(e) => {
-                setSelectedClass(e.target.value)
-                setSelectedCourse("All")
-              }}
-            >
-              {classes.map((cls) => (
-                <option key={cls} value={cls}>
-                  {cls === "All" ? "All Classes" : `Class ${cls}`}
-                </option>
-              ))}
-            </select>
-          </div>
+          <StyledDropdown
+            label="Select Class"
+            options={classOptions}
+            value={selectedClass}
+            onChange={(value) => {
+              setSelectedClass(value)
+              setSelectedCourse("All")
+            }}
+            placeholder="Select a class"
+          />
 
-          <div className="filter-group">
-            <label>Select Course</label>
-            <select value={selectedCourse} onChange={(e) => setSelectedCourse(e.target.value)}>
-              {courses.map((course) => (
-                <option key={course} value={course}>
-                  {course === "All" ? "All Courses" : course}
-                </option>
-              ))}
-            </select>
-          </div>
+          <StyledDropdown
+            label="Select Course"
+            options={courseOptions}
+            value={selectedCourse}
+            onChange={setSelectedCourse}
+            placeholder="Select a course"
+          />
         </div>
 
         {/* Results Count */}
