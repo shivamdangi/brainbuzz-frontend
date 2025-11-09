@@ -1,12 +1,32 @@
 "use client"
+import { useEffect } from "react"
+import { X } from "lucide-react"
 import "./TeacherModal.css"
 
 function TeacherModal({ teacher, onClose }) {
+  // Close modal on ESC key press
+  useEffect(() => {
+    const handleEscape = (event) => {
+      if (event.key === "Escape") {
+        onClose()
+      }
+    }
+
+    document.addEventListener("keydown", handleEscape)
+    // Prevent body scroll when modal is open
+    document.body.style.overflow = "hidden"
+
+    return () => {
+      document.removeEventListener("keydown", handleEscape)
+      document.body.style.overflow = "unset"
+    }
+  }, [onClose])
+
   return (
     <div className="modal-overlay" onClick={onClose}>
       <div className="modal" onClick={(e) => e.stopPropagation()}>
-        <button className="modal-close" onClick={onClose}>
-          ✕
+        <button className="modal-close" onClick={onClose} aria-label="Close modal" type="button">
+          <X size={24} />
         </button>
         <div className="modal-content grid grid-2">
           <div className="modal-image">
