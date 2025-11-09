@@ -136,10 +136,6 @@ function ContactForm() {
         {isSubmitting ? "Sending..." : "Send Message"}
       </button>
 
-      <p className="form-note">
-        <strong>Note:</strong> The contact form is set up for demonstration. To enable email functionality, configure
-        Formspree or EmailJS with your email address.
-      </p>
     </form>
   )
 }
