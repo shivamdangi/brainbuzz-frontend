@@ -1,0 +1,150 @@
+/* Complete navbar redesign with modern glassmorphism */
+.navbar {
+  background-color: rgba(248, 250, 252, 0.8);
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(226, 232, 240, 0.5);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.05);
+  animation: slideDownNav 0.5s ease-out;
+}
+
+@keyframes slideDownNav {
+  from {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.navbar .container {
+  padding: var(--spacing-md) var(--spacing-xl);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+/* Premium brand logo with gradient */
+.navbar-brand h3 {
+  background: linear-gradient(135deg, #0066ff 0%, #00d4ff 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 0;
+  font-size: var(--text-2xl);
+  font-weight: 900;
+  letter-spacing: -0.8px;
+  transition: var(--transition-fast);
+}
+
+.navbar-brand h3:hover {
+  transform: scale(1.05);
+}
+
+.navbar-menu {
+  display: flex;
+  gap: var(--spacing-2xl);
+  align-items: center;
+}
+
+/* Enhanced navigation links with advanced hover effects */
+.nav-link {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: var(--spacing-sm) 0;
+  color: var(--text-secondary);
+  font-weight: 500;
+  transition: var(--transition-fast);
+  font-size: var(--text-base);
+  position: relative;
+  padding-bottom: var(--spacing-xs);
+}
+
+.nav-link::after {
+  content: "";
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: linear-gradient(135deg, #0066ff 0%, #00d4ff 100%);
+  transition: width 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+  border-radius: 1px;
+}
+
+.nav-link:hover {
+  color: var(--primary);
+  font-weight: 600;
+}
+
+.nav-link:hover::after,
+.nav-link.active::after {
+  width: 100%;
+}
+
+.nav-link.active {
+  color: var(--primary);
+  font-weight: 700;
+}
+
+.mobile-toggle {
+  display: none;
+  background: none;
+  font-size: var(--text-2xl);
+  padding: 0;
+  color: var(--text-primary);
+  cursor: pointer;
+  border: none;
+  z-index: 1001;
+}
+
+@media (max-width: 768px) {
+  .mobile-toggle {
+    display: block;
+  }
+
+  .navbar-menu {
+    position: fixed;
+    top: 70px;
+    left: 0;
+    right: 0;
+    flex-direction: column;
+    gap: 0;
+    background-color: rgba(248, 250, 252, 0.98);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--border-light);
+    display: none;
+    padding: var(--spacing-lg);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+    max-height: calc(100vh - 70px);
+    overflow-y: auto;
+  }
+
+  .navbar-menu.active {
+    display: flex;
+  }
+
+  .nav-link {
+    width: 100%;
+    padding: var(--spacing-md) var(--spacing-lg);
+    text-align: left;
+  }
+
+  .nav-link::after {
+    display: none;
+  }
+
+  .nav-link.active {
+    background: linear-gradient(135deg, rgba(0, 102, 255, 0.1) 0%, rgba(0, 212, 255, 0.05) 100%);
+    border-left: 4px solid var(--primary);
+    padding-left: calc(var(--spacing-lg) - 4px);
+    border-radius: 0 var(--radius-md) var(--radius-md) 0;
+  }
+}
