@@ -31,7 +31,7 @@ function ContactForm() {
     try {
       // Send form data using EmailJS or Formspree
       // For now, we'll use Formspree as a simple solution
-      const response = await fetch("https://formspree.io/f/YOUR_FORM_ID", {
+      const response = await fetch("https://formspree.io/f/xyzlgnkv", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -39,7 +39,7 @@ function ContactForm() {
         body: JSON.stringify({
           ...formData,
           _replyto: formData.email,
-          _to: "superbshivam123@gmail.com",
+          _to: "shivamdangi039@gmail.com",
         }),
       })
 
