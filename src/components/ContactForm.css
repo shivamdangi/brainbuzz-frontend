@@ -1,8 +1,29 @@
 .contact-form {
-  background-color: var(--background);
+  background: linear-gradient(135deg, white 0%, #fafbff 100%);
   padding: var(--spacing-2xl);
-  border-radius: var(--radius-lg);
-  box-shadow: var(--shadow-md);
+  border-radius: var(--radius-2xl);
+  box-shadow: 0 12px 48px rgba(0, 0, 0, 0.08);
+  border: 2px solid var(--border-light);
+  transition: var(--transition);
+  position: relative;
+  overflow: hidden;
+}
+
+.contact-form::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, #0066ff, #00d4ff, #ff6b35);
+  background-size: 200% 100%;
+  animation: gradient-shift 3s ease infinite;
+}
+
+.contact-form:hover {
+  box-shadow: 0 16px 64px rgba(0, 102, 255, 0.15);
+  border-color: rgba(0, 102, 255, 0.2);
 }
 
 .contact-form h3 {
@@ -17,19 +38,21 @@
 .form-group input,
 .form-group textarea {
   width: 100%;
-  padding: var(--spacing-md);
-  border: 1px solid var(--border);
+  padding: var(--spacing-md) var(--spacing-lg);
+  border: 2px solid var(--border-light);
   border-radius: var(--radius-lg);
   font-family: var(--font-family);
   font-size: var(--text-base);
   transition: var(--transition);
+  background: white;
 }
 
 .form-group input:focus,
 .form-group textarea:focus {
   outline: none;
   border-color: var(--primary);
-  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+  box-shadow: 0 0 0 4px rgba(0, 102, 255, 0.1), 0 8px 24px rgba(0, 102, 255, 0.15);
+  transform: translateY(-2px);
 }
 
 .submit-message {
@@ -40,15 +63,17 @@
 }
 
 .submit-message.success {
-  background-color: var(--accent-light);
-  color: var(--accent);
-  border: 1px solid var(--accent);
+  background: linear-gradient(135deg, rgba(16, 185, 129, 0.1), rgba(16, 185, 129, 0.05));
+  color: #059669;
+  border: 2px solid rgba(16, 185, 129, 0.3);
+  box-shadow: 0 4px 16px rgba(16, 185, 129, 0.15);
 }
 
 .submit-message.error {
-  background-color: #fee;
-  color: #c33;
-  border: 1px solid #fcc;
+  background: linear-gradient(135deg, rgba(239, 68, 68, 0.1), rgba(239, 68, 68, 0.05));
+  color: #dc2626;
+  border: 2px solid rgba(239, 68, 68, 0.3);
+  box-shadow: 0 4px 16px rgba(239, 68, 68, 0.15);
 }
 
 .form-note {

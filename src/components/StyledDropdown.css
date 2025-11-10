@@ -32,9 +32,9 @@
 
 .dropdown-trigger:hover {
   border-color: var(--primary);
-  background-color: var(--primary-light);
-  box-shadow: var(--shadow-sm);
-  transform: translateY(-2px);
+  background: linear-gradient(135deg, var(--primary-light) 0%, rgba(0, 212, 255, 0.08) 100%);
+  box-shadow: 0 4px 16px rgba(0, 102, 255, 0.15);
+  transform: translateY(-2px) scale(1.01);
 }
 
 .dropdown-trigger:focus {
@@ -45,8 +45,8 @@
 
 .dropdown-trigger.open {
   border-color: var(--primary);
-  box-shadow: 0 0 0 4px rgba(0, 102, 255, 0.1), var(--shadow-md);
-  background-color: var(--background);
+  box-shadow: 0 0 0 4px rgba(0, 102, 255, 0.15), 0 8px 32px rgba(0, 102, 255, 0.2);
+  background: linear-gradient(135deg, white 0%, var(--primary-light) 100%);
 }
 
 .dropdown-value {
@@ -62,10 +62,15 @@
   transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   flex-shrink: 0;
   margin-left: var(--spacing-md);
+  filter: drop-shadow(0 2px 4px rgba(0, 102, 255, 0.2));
 }
 
 .dropdown-icon.rotated {
   transform: rotate(180deg);
+}
+
+.dropdown-trigger:hover .dropdown-icon {
+  animation: float 2s ease-in-out infinite;
 }
 
 .dropdown-menu {

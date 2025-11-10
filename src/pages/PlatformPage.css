@@ -1,31 +1,87 @@
 .platform-page {
   min-height: 100vh;
-  background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+  background: linear-gradient(135deg, #0f172a 0%, #1e293b 30%, #334155 70%, #0066ff 100%);
+  background-size: 400% 400%;
+  animation: gradient-shift 15s ease infinite;
   display: flex;
   align-items: center;
   justify-content: center;
   padding: var(--spacing-2xl) 0;
+  position: relative;
+  overflow: hidden;
+}
+
+.platform-page::before {
+  content: "";
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(0, 102, 255, 0.2) 0%, transparent 50%);
+  animation: rotate-360 20s linear infinite;
+  pointer-events: none;
+}
+
+.platform-page::after {
+  content: "";
+  position: absolute;
+  bottom: -30%;
+  right: -30%;
+  width: 150%;
+  height: 150%;
+  background: radial-gradient(circle, rgba(0, 212, 255, 0.15) 0%, transparent 60%);
+  animation: rotate-360 30s linear infinite reverse;
+  pointer-events: none;
 }
 
 .coming-soon-container {
-  background-color: white;
-  border-radius: var(--radius-xl);
+  background: linear-gradient(135deg, white 0%, #fafbff 100%);
+  border-radius: var(--radius-2xl);
   padding: var(--spacing-3xl);
   text-align: center;
   max-width: 600px;
   width: 100%;
-  box-shadow: var(--shadow-xl);
+  box-shadow: 0 20px 80px rgba(0, 0, 0, 0.3), 0 0 80px rgba(0, 102, 255, 0.3);
+  border: 3px solid rgba(255, 255, 255, 0.5);
+  position: relative;
+  z-index: 10;
+  animation: float 4s ease-in-out infinite;
+}
+
+.coming-soon-container::before {
+  content: "";
+  position: absolute;
+  inset: -3px;
+  background: linear-gradient(135deg, #0066ff, #00d4ff, #ff6b35);
+  background-size: 200% 200%;
+  border-radius: var(--radius-2xl);
+  z-index: -1;
+  animation: gradient-shift 3s ease infinite;
+  opacity: 0.6;
 }
 
 .coming-soon-icon {
-  font-size: 4rem;
+  font-size: 5rem;
   margin-bottom: var(--spacing-lg);
+  background: linear-gradient(135deg, #0066ff, #00d4ff);
+  background-size: 200% 200%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: gradient-shift 3s ease infinite, float 3s ease-in-out infinite;
+  filter: drop-shadow(0 4px 12px rgba(0, 102, 255, 0.3));
 }
 
 .coming-soon-content h1 {
-  color: var(--foreground);
-  font-size: var(--text-4xl);
+  background: linear-gradient(135deg, #0f172a 0%, #0066ff 100%);
+  background-size: 200% 200%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  font-size: var(--text-5xl);
   margin-bottom: var(--spacing-lg);
+  animation: gradient-shift 5s ease infinite;
 }
 
 .coming-soon-content > p {
@@ -36,10 +92,18 @@
 
 .features-preview {
   text-align: left;
-  background-color: var(--surface);
-  padding: var(--spacing-lg);
-  border-radius: var(--radius-lg);
+  background: linear-gradient(135deg, rgba(0, 102, 255, 0.05), rgba(0, 212, 255, 0.03));
+  padding: var(--spacing-xl);
+  border-radius: var(--radius-2xl);
   margin-bottom: var(--spacing-2xl);
+  border: 2px solid rgba(0, 102, 255, 0.2);
+  box-shadow: 0 8px 32px rgba(0, 102, 255, 0.15);
+  transition: var(--transition);
+}
+
+.features-preview:hover {
+  box-shadow: 0 12px 48px rgba(0, 102, 255, 0.25);
+  transform: translateY(-2px);
 }
 
 .features-preview h3 {
@@ -56,8 +120,16 @@
 }
 
 .features-preview li {
-  color: var(--text-secondary);
-  font-weight: 500;
+  color: var(--text-primary);
+  font-weight: 600;
+  padding: var(--spacing-sm);
+  transition: var(--transition);
+  border-radius: var(--radius-md);
+}
+
+.features-preview li:hover {
+  background: rgba(0, 102, 255, 0.08);
+  transform: translateX(4px);
 }
 
 .notify-form {
@@ -77,9 +149,15 @@
 }
 
 .launch-text {
-  color: var(--primary);
-  font-weight: 600;
-  font-size: var(--text-lg);
+  background: linear-gradient(135deg, #0066ff, #00d4ff);
+  background-size: 200% 200%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  font-weight: 800;
+  font-size: var(--text-xl);
+  animation: gradient-shift 3s ease infinite, pulse-glow 2s ease-in-out infinite;
+  filter: drop-shadow(0 2px 8px rgba(0, 102, 255, 0.3));
 }
 
 @media (max-width: 768px) {

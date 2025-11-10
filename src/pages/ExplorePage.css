@@ -1,7 +1,19 @@
 .explore-page {
   min-height: 100vh;
   padding: var(--spacing-2xl) 0;
-  background-color: var(--surface);
+  background: linear-gradient(180deg, #f8fafc 0%, #ffffff 50%, #f1f5f9 100%);
+  position: relative;
+}
+
+.explore-page::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 300px;
+  background: radial-gradient(circle at top center, rgba(0, 102, 255, 0.08) 0%, transparent 70%);
+  pointer-events: none;
 }
 
 .explore-header {
@@ -10,24 +22,48 @@
 }
 
 .explore-header h1 {
-  color: var(--foreground);
+  background: linear-gradient(135deg, #0f172a 0%, #0066ff 100%);
+  background-size: 200% 200%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: gradient-shift 5s ease infinite;
 }
 
 .filters {
   display: flex;
   gap: var(--spacing-xl);
   margin-bottom: var(--spacing-2xl);
-  background: linear-gradient(135deg, var(--background) 0%, var(--surface) 100%);
+  background: linear-gradient(135deg, white 0%, #fafbff 100%);
   padding: var(--spacing-xl);
-  border-radius: var(--radius-xl);
-  box-shadow: var(--shadow-md);
-  border: 1px solid var(--border-light);
+  border-radius: var(--radius-2xl);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+  border: 2px solid var(--border-light);
   flex-wrap: wrap;
-  transition: box-shadow 0.3s ease;
+  transition: var(--transition);
+  position: relative;
+  overflow: hidden;
+}
+
+.filters::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(0, 102, 255, 0.05), transparent);
+  transition: left 0.6s ease;
 }
 
 .filters:hover {
-  box-shadow: var(--shadow-lg);
+  box-shadow: 0 12px 48px rgba(0, 102, 255, 0.2);
+  border-color: rgba(0, 102, 255, 0.3);
+  transform: translateY(-2px);
+}
+
+.filters:hover::before {
+  left: 100%;
 }
 
 .filters > .styled-dropdown {
@@ -46,16 +82,39 @@
 
 .teacher-card-explore {
   cursor: pointer;
-  background-color: var(--background);
-  border-radius: var(--radius-lg);
+  background: white;
+  border-radius: var(--radius-2xl);
   overflow: hidden;
-  box-shadow: var(--shadow-sm);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
   transition: var(--transition);
+  border: 2px solid var(--border-light);
+  position: relative;
+}
+
+.teacher-card-explore::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, #0066ff, #00d4ff, #ff6b35);
+  background-size: 200% 100%;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.5s ease;
+  z-index: 10;
 }
 
 .teacher-card-explore:hover {
-  box-shadow: var(--shadow-lg);
-  transform: translateY(-4px);
+  box-shadow: 0 20px 60px rgba(0, 102, 255, 0.25);
+  transform: translateY(-8px) scale(1.02);
+  border-color: rgba(0, 102, 255, 0.4);
+}
+
+.teacher-card-explore:hover::before {
+  transform: scaleX(1);
+  animation: gradient-shift 2s ease infinite;
 }
 
 .teacher-image-explore {
@@ -70,10 +129,12 @@
   height: 100%;
   object-fit: cover;
   transition: var(--transition);
+  filter: brightness(0.95);
 }
 
 .teacher-card-explore:hover .teacher-image-explore img {
-  transform: scale(1.05);
+  transform: scale(1.1) rotate(1deg);
+  filter: brightness(1.05) contrast(1.1);
 }
 
 .hover-info {
@@ -82,12 +143,13 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: rgba(0, 0, 0, 0.6);
+  background: linear-gradient(135deg, rgba(0, 102, 255, 0.85) 0%, rgba(0, 212, 255, 0.75) 100%);
   display: flex;
   align-items: center;
   justify-content: center;
   opacity: 0;
   transition: var(--transition);
+  backdrop-filter: blur(4px);
 }
 
 .teacher-card-explore:hover .hover-info {
@@ -97,7 +159,15 @@
 .hover-info p {
   color: white;
   margin-bottom: 0;
-  font-weight: 600;
+  font-weight: 700;
+  font-size: var(--text-lg);
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  transform: scale(0.8);
+  transition: var(--transition);
+}
+
+.teacher-card-explore:hover .hover-info p {
+  transform: scale(1);
 }
 
 .teacher-details {
@@ -139,6 +209,13 @@
 
 .rating-explore .stars {
   color: #fbbf24;
+  filter: drop-shadow(0 2px 4px rgba(251, 191, 36, 0.3));
+  transition: var(--transition);
+}
+
+.teacher-card-explore:hover .rating-explore .stars {
+  filter: drop-shadow(0 4px 8px rgba(251, 191, 36, 0.5));
+  transform: scale(1.1);
 }
 
 .rating-explore .rating-value {

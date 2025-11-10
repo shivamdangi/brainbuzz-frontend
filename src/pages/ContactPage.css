@@ -1,7 +1,20 @@
 .contact-page {
   min-height: 100vh;
-  background-color: var(--surface);
+  background: linear-gradient(180deg, #f8fafc 0%, white 50%, #f1f5f9 100%);
   padding: var(--spacing-3xl) 0;
+  position: relative;
+}
+
+.contact-page::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, rgba(0, 212, 255, 0.1) 0%, transparent 70%);
+  pointer-events: none;
+  animation: float 8s ease-in-out infinite;
 }
 
 .contact-header {
@@ -10,7 +23,12 @@
 }
 
 .contact-header h1 {
-  color: var(--foreground);
+  background: linear-gradient(135deg, #0f172a 0%, #0066ff 100%);
+  background-size: 200% 200%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: gradient-shift 5s ease infinite;
 }
 
 .contact-content {
@@ -23,10 +41,36 @@
 }
 
 .video-container {
-  border-radius: var(--radius-lg);
+  border-radius: var(--radius-2xl);
   overflow: hidden;
-  box-shadow: var(--shadow-lg);
+  box-shadow: 0 12px 48px rgba(0, 102, 255, 0.2);
   margin-bottom: var(--spacing-lg);
+  border: 2px solid var(--border-light);
+  transition: var(--transition);
+  position: relative;
+}
+
+.video-container::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: var(--radius-2xl);
+  padding: 2px;
+  background: linear-gradient(135deg, #0066ff, #00d4ff);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.video-container:hover {
+  box-shadow: 0 20px 60px rgba(0, 102, 255, 0.3);
+  transform: translateY(-4px);
+}
+
+.video-container:hover::before {
+  opacity: 1;
 }
 
 .video-container iframe {
@@ -35,9 +79,18 @@
 }
 
 .video-info {
-  background-color: var(--background);
-  padding: var(--spacing-lg);
-  border-radius: var(--radius-lg);
+  background: linear-gradient(135deg, white 0%, #fafbff 100%);
+  padding: var(--spacing-xl);
+  border-radius: var(--radius-2xl);
+  border: 2px solid var(--border-light);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.06);
+  transition: var(--transition);
+}
+
+.video-info:hover {
+  box-shadow: 0 12px 48px rgba(0, 102, 255, 0.15);
+  transform: translateY(-2px);
+  border-color: rgba(0, 102, 255, 0.2);
 }
 
 .video-info h3 {

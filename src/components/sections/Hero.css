@@ -6,7 +6,33 @@
   align-items: center;
   justify-content: center;
   overflow: hidden;
-  background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+  background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #334155 100%);
+}
+
+.hero::before {
+  content: "";
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(0, 102, 255, 0.15) 0%, transparent 50%);
+  animation: rotate-360 20s linear infinite;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.hero::after {
+  content: "";
+  position: absolute;
+  bottom: -30%;
+  right: -30%;
+  width: 150%;
+  height: 150%;
+  background: radial-gradient(circle, rgba(0, 212, 255, 0.1) 0%, transparent 60%);
+  animation: rotate-360 30s linear infinite reverse;
+  pointer-events: none;
+  z-index: 1;
 }
 
 /* Background image with overlay */
@@ -44,8 +70,16 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background: linear-gradient(135deg, rgba(15, 23, 42, 0.5) 0%, rgba(0, 102, 255, 0.3) 50%, rgba(0, 212, 255, 0.2) 100%);
-  backdrop-filter: blur(2px);
+  background: linear-gradient(
+    135deg,
+    rgba(15, 23, 42, 0.6) 0%,
+    rgba(0, 102, 255, 0.4) 30%,
+    rgba(0, 212, 255, 0.3) 60%,
+    rgba(255, 107, 53, 0.2) 100%
+  );
+  background-size: 400% 400%;
+  animation: gradient-shift 15s ease infinite;
+  backdrop-filter: blur(3px);
 }
 
 .hero-content {
@@ -71,16 +105,19 @@
 
 .hero-badge {
   display: inline-block;
-  background: rgba(255, 255, 255, 0.15);
-  backdrop-filter: blur(10px);
+  background: linear-gradient(135deg, rgba(0, 102, 255, 0.3), rgba(0, 212, 255, 0.2));
+  backdrop-filter: blur(20px);
   color: white;
   padding: var(--spacing-sm) var(--spacing-lg);
   border-radius: var(--radius-3xl);
   font-size: var(--text-sm);
-  font-weight: 600;
+  font-weight: 700;
   margin-bottom: var(--spacing-xl);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  animation: slideInDown 0.8s ease-out 0.1s both;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  box-shadow: 0 8px 32px rgba(0, 102, 255, 0.3), inset 0 1px 1px rgba(255, 255, 255, 0.3);
+  animation: slideInDown 0.8s ease-out 0.1s both, float 3s ease-in-out infinite;
+  text-transform: uppercase;
+  letter-spacing: 1px;
 }
 
 @keyframes slideInDown {
@@ -101,8 +138,16 @@
   line-height: 1.1;
   font-weight: 900;
   letter-spacing: -1.5px;
-  text-shadow: 0 4px 24px rgba(0, 0, 0, 0.2);
+  text-shadow: 0 4px 24px rgba(0, 0, 0, 0.3),
+               0 0 60px rgba(0, 212, 255, 0.5),
+               0 0 100px rgba(0, 102, 255, 0.3);
   animation: slideInDown 0.8s ease-out 0.2s both;
+  background: linear-gradient(135deg, #ffffff 0%, #00d4ff 100%);
+  background-size: 200% 200%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: slideInDown 0.8s ease-out 0.2s both, gradient-shift 5s ease infinite;
 }
 
 .hero-text p {
@@ -127,31 +172,39 @@
 }
 
 .hero-buttons .btn-primary {
-  background: linear-gradient(135deg, white 0%, #f0f7ff 100%);
-  color: var(--primary);
-  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.25);
+  background: linear-gradient(135deg, #0066ff 0%, #00d4ff 100%);
+  background-size: 200% 200%;
+  color: white;
+  box-shadow: 0 12px 40px rgba(0, 102, 255, 0.5), 0 0 60px rgba(0, 212, 255, 0.3);
   padding: var(--spacing-lg) var(--spacing-3xl);
   font-size: var(--text-lg);
+  font-weight: 700;
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  animation: gradient-shift 3s ease infinite;
 }
 
 .hero-buttons .btn-primary:hover {
-  box-shadow: 0 16px 56px rgba(0, 0, 0, 0.35);
-  transform: translateY(-4px);
+  box-shadow: 0 16px 56px rgba(0, 102, 255, 0.7), 0 0 80px rgba(0, 212, 255, 0.5);
+  transform: translateY(-6px) scale(1.05);
+  border-color: rgba(255, 255, 255, 0.4);
 }
 
 .hero-buttons .btn-secondary {
   background: rgba(255, 255, 255, 0.1);
   color: white;
-  border: 2px solid white;
-  backdrop-filter: blur(10px);
+  border: 2px solid rgba(255, 255, 255, 0.5);
+  backdrop-filter: blur(20px);
   padding: var(--spacing-lg) var(--spacing-3xl);
   font-size: var(--text-lg);
+  font-weight: 700;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2), inset 0 1px 1px rgba(255, 255, 255, 0.2);
 }
 
 .hero-buttons .btn-secondary:hover {
-  background: rgba(255, 255, 255, 0.2);
-  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.25);
-  transform: translateY(-4px);
+  background: rgba(255, 255, 255, 0.25);
+  box-shadow: 0 12px 40px rgba(255, 255, 255, 0.3), 0 0 60px rgba(255, 255, 255, 0.2);
+  transform: translateY(-6px) scale(1.05);
+  border-color: rgba(255, 255, 255, 0.8);
 }
 
 /* Stats section with modern design */
@@ -164,19 +217,39 @@
 }
 
 .stat {
-  background: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(10px);
+  background: linear-gradient(135deg, rgba(0, 102, 255, 0.2), rgba(0, 212, 255, 0.1));
+  backdrop-filter: blur(20px);
   padding: var(--spacing-xl) var(--spacing-2xl);
   border-radius: var(--radius-2xl);
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  border: 2px solid rgba(255, 255, 255, 0.3);
   text-align: center;
   transition: var(--transition);
+  box-shadow: 0 8px 32px rgba(0, 102, 255, 0.3), inset 0 1px 1px rgba(255, 255, 255, 0.2);
+  position: relative;
+  overflow: hidden;
+}
+
+.stat::before {
+  content: "";
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+  transition: var(--transition-slow);
+  pointer-events: none;
 }
 
 .stat:hover {
-  background: rgba(255, 255, 255, 0.15);
-  transform: translateY(-4px);
-  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.2);
+  background: linear-gradient(135deg, rgba(0, 102, 255, 0.3), rgba(0, 212, 255, 0.2));
+  transform: translateY(-8px) scale(1.05);
+  box-shadow: 0 16px 48px rgba(0, 102, 255, 0.5), 0 0 60px rgba(0, 212, 255, 0.4);
+  border-color: rgba(255, 255, 255, 0.5);
+}
+
+.stat:hover::before {
+  transform: rotate(45deg);
 }
 
 .stat h3 {
@@ -184,6 +257,9 @@
   font-size: var(--text-4xl);
   margin-bottom: var(--spacing-sm);
   font-weight: 900;
+  text-shadow: 0 4px 20px rgba(0, 212, 255, 0.6);
+  position: relative;
+  z-index: 1;
 }
 
 .stat p {

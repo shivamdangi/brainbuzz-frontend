@@ -1,3 +1,4 @@
+import AnimatedCounter from "../AnimatedCounter"
 import "./Hero.css"
 
 function Hero() {
@@ -24,15 +25,21 @@ function Hero() {
 
           <div className="hero-stats">
             <div className="stat">
-              <h3>100+</h3>
+              <h3>
+                <AnimatedCounter end="100" suffix="+" />
+              </h3>
               <p>Active Students</p>
             </div>
             <div className="stat">
-              <h3>20+</h3>
+              <h3>
+                <AnimatedCounter end="20" suffix="+" />
+              </h3>
               <p>Expert Teachers</p>
             </div>
             <div className="stat">
-              <h3>95%</h3>
+              <h3>
+                <AnimatedCounter end="95" suffix="%" />
+              </h3>
               <p>Success Rate</p>
             </div>
           </div>
